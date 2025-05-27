@@ -1,0 +1,21 @@
+{
+  "name": "demo-server-hono",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts",
+    "seed": "bun run src/scripts/seedDatabase.ts",
+    "openapi": "bun run src/scripts/generateOpenAPI.ts",
+    "openapi:generic": "bun run src/scripts/generateGenericOpenAPI.ts"
+  },
+  "dependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mongoose": "^5.11.97",
+    "glob": "^10.4.5",
+    "hono": "^4.7.10",
+    "mongoose": "^8.15.1"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "^10.1.1",
+    "@types/bun": "latest"
+  }
+}
