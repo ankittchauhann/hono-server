@@ -6,6 +6,7 @@ export interface QueryParams {
     page?: string;
     limit?: string;
     fields?: string;
+    currentPage?: string;
 }
 
 interface BuildQueryResult<T> {
@@ -31,13 +32,21 @@ function buildQuery<T>(
     queryParams: QueryParams,
     validKeys: ValidKeys<T>[]
 ): BuildQueryResult<T> {
-    const { sort, page, limit, fields, ...filters } = queryParams;
+    const { sort, page, limit, fields, currentPage, ...filters } = queryParams;
+
+    // Use currentPage if provided, otherwise use page
+    const pageParam = currentPage || page;
 
     // Initialize query object
     const query: FilterQuery<T> = {};
 
     // Parse and build query filters
     for (const [key, value] of Object.entries(filters)) {
+        // Skip pagination and utility parameters
+        if (["sort", "page", "limit", "fields", "currentPage"].includes(key)) {
+            continue;
+        }
+
         // Handle MongoDB operator syntax: field[operator]=value
         const operatorMatch = key.match(/^(.+)\[(\w+)\]$/);
 
@@ -74,13 +83,14 @@ function buildQuery<T>(
                 case "gt":
                 case "lte":
                 case "lt":
-                case "ne":
+                case "ne": {
                     // Convert numeric strings to numbers for comparison operators
                     const numValue = Number(value);
                     query[fieldName][`$${operator}`] = Number.isNaN(numValue)
                         ? value
                         : numValue;
                     break;
+                }
                 default:
                     throw new BadRequestError(
                         `Unsupported operator: ${operator}`
@@ -124,7 +134,7 @@ function buildQuery<T>(
     }
 
     // Pagination
-    const pageNumber = Number.parseInt(page || "1", 10);
+    const pageNumber = Number.parseInt(pageParam || "1", 10);
     const limitNumber = Number.parseInt(limit || "10", 10);
     const skip = (pageNumber - 1) * limitNumber;
 

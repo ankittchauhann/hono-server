@@ -1,5 +1,11 @@
 import { Hono } from "hono";
-import { UserController } from "../controllers/UserController";
+import {
+    getAllUsers,
+    createUser,
+    getUserById,
+    updateUser,
+    deleteUser,
+} from "../controllers/UserController";
 import { performanceMiddleware } from "../middleware/performance";
 
 const userRoutes = new Hono();
@@ -8,10 +14,10 @@ const userRoutes = new Hono();
 userRoutes.use("*", performanceMiddleware);
 
 // User routes
-userRoutes.get("/", UserController.getAllUsers);
-userRoutes.post("/", UserController.createUser);
-userRoutes.get("/:userId", UserController.getUserById);
-userRoutes.put("/:userId", UserController.updateUser);
-userRoutes.delete("/:userId", UserController.deleteUser);
+userRoutes.get("/", getAllUsers);
+userRoutes.post("/", createUser);
+userRoutes.get("/:userId", getUserById);
+userRoutes.put("/:userId", updateUser);
+userRoutes.delete("/:userId", deleteUser);
 
 export default userRoutes;
