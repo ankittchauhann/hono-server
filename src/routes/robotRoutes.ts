@@ -3,6 +3,7 @@ import {
     createRobot,
     deleteRobot,
     getAllRobots,
+    getAllRobotsUnlimited,
     getRobotById,
     getRobotsByType,
     updateRobot,
@@ -12,6 +13,9 @@ const robotRoutes = new Hono();
 
 // GET /robots - Get all robots
 robotRoutes.get("/", getAllRobots);
+
+// GET /robots/all - Get all robots without pagination
+robotRoutes.get("/all", getAllRobotsUnlimited);
 
 // GET /robots/:id - Get robot by _id
 robotRoutes.get("/:id", getRobotById); // <-- Update route and handler

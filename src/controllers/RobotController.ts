@@ -68,6 +68,31 @@ export async function getAllRobots(c: Context) {
     }
 }
 
+// Get all robots without any query limitations
+export async function getAllRobotsUnlimited(c: Context) {
+    try {
+        const robots = await Robot.find({}).lean();
+
+        return c.json({
+            success: true,
+            data: robots,
+            count: robots.length,
+            message: "All robots fetched successfully (no pagination)",
+        });
+    } catch (error) {
+        console.error("Error in getAllRobotsUnlimited:", error);
+        return c.json(
+            {
+                success: false,
+                error: "Failed to fetch all robots",
+                message:
+                    error instanceof Error ? error.message : "Unknown error",
+            },
+            500
+        );
+    }
+}
+
 // Get robot by serial number
 export async function getRobotBySerial(c: Context) {
     try {

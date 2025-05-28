@@ -34,7 +34,7 @@ Our API supports MongoDB-style queries with enterprise-grade features:
 GET /api/robots?charge[gte]=80
 
 # Not equal to specific status
-GET /api/robots?status[ne]=INACTIVE
+GET /api/robots?status[ne]=ERROR
 
 # Array contains - multiple robot types
 GET /api/robots?type[in]=TUGGER,FORKLIFT
@@ -42,15 +42,15 @@ GET /api/robots?type[in]=TUGGER,FORKLIFT
 # Regex pattern matching - serial numbers starting with "AR"
 GET /api/robots?serialNumber[regex]=/^AR/
 
-# Numeric comparisons for battery charge
-GET /api/robots?charge[lt]=20&status=CHARGING
+# Numeric comparisons for battery charge with status filtering
+GET /api/robots?charge[lt]=20&status[in]=CHARGING,ERROR
 ```
 
 #### Multiple Value Filtering
 
 ```bash
 # OR operation with comma-separated values
-GET /api/robots?status=ACTIVE,CHARGING&type=TUGGER,FORKLIFT
+GET /api/robots?status=ACTIVE,CHARGING,ERROR&type=TUGGER,FORKLIFT
 ```
 
 #### Advanced Sorting
@@ -76,6 +76,9 @@ GET /api/robots?page=2&limit=10
 GET /api/robots?currentPage=2&limit=10
 
 # Default: page=1, limit=10
+
+# Get ALL robots without pagination (returns complete dataset)
+GET /api/robots/all
 ```
 
 #### Field Selection
@@ -94,11 +97,67 @@ GET /api/robots?fields=-createdAt,-updatedAt
 # High-charge robots (using numeric values), sorted by charge level
 GET /api/robots?type=TUGGER&charge[gte]=80&sort=-charge&fields=serialNumber,charge,status
 
-# Search robots with serial numbers starting with "AR" that are active or charging
-GET /api/robots?serialNumber[regex]=/^AR/&status[in]=ACTIVE,CHARGING&sort=serialNumber
+# Search robots with serial numbers starting with "AR" that are active, charging, or in error
+GET /api/robots?serialNumber[regex]=/^AR/&status[in]=ACTIVE,CHARGING,ERROR&sort=serialNumber
 
 # Paginated results with low battery robots (charge < 25%)
 GET /api/robots?charge[lt]=25&page=1&limit=5&fields=serialNumber,charge,status&sort=charge
+
+# Get complete dataset without any limitations (useful for data exports)
+GET /api/robots/all
+```
+
+## 📊 Endpoint Options
+
+### Paginated vs Unlimited Queries
+
+The API provides two ways to retrieve robot data:
+
+#### Paginated Endpoint: `GET /api/robots`
+
+-   **Default behavior**: Returns 10 robots per page
+-   **Query support**: Full MongoDB-style filtering, sorting, field selection
+-   **Pagination**: Includes pagination metadata (totalPages, hasNext, etc.)
+-   **Use case**: UI applications, browsing large datasets
+
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": [
+        /* 10 robots */
+    ],
+    "pagination": {
+        "currentPage": 1,
+        "totalPages": 5,
+        "totalCount": 50,
+        "limit": 10,
+        "hasNext": true,
+        "hasPrev": false
+    },
+    "count": 10
+}
+```
+
+#### Unlimited Endpoint: `GET /api/robots/all`
+
+-   **Complete dataset**: Returns ALL robots without limits
+-   **No pagination**: Bypasses query parser limitations
+-   **Fast and simple**: Direct database query
+-   **Use case**: Data exports, analytics, complete dataset access
+
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": [
+        /* all 50 robots */
+    ],
+    "count": 50,
+    "message": "All robots fetched successfully (no pagination)"
+}
 ```
 
 ## 🛠️ Setup
@@ -164,7 +223,7 @@ demo-server-hono/
 │   │   ├── index.ts             # Middleware exports
 │   │   └── performance.ts       # Performance monitoring
 │   ├── scripts/                 # Database utilities
-│   │   └── seedDatabase.ts      # Seed script with 25 sample robots
+│   │   └── seedDatabase.ts      # Seed script with 50 sample robots
 │   └── utils/                   # Utilities and helpers
 │       ├── queryParser.ts       # Advanced MongoDB-style query parser
 │       ├── documentation.ts     # API documentation utilities
@@ -193,7 +252,7 @@ For detailed setup instructions, see the existing Robot and User implementations
 ```bash
 bun run dev              # Start development server with hot reload
 bun run start            # Start production server
-bun run seed             # Seed database with 25 sample robots
+bun run seed             # Seed database with 50 sample robots
 ```
 
 **Key Features:**
@@ -201,6 +260,7 @@ bun run seed             # Seed database with 25 sample robots
 -   Hot reload development environment with Bun
 -   MongoDB Docker integration support
 -   Database seeding with realistic robot data using numeric charge values (0-100)
+-   Dual endpoint support: paginated (`/robots`) and unlimited (`/robots/all`) queries
 
 ## 🧪 Testing
 
@@ -263,8 +323,10 @@ The system includes comprehensive utilities:
 
 ### Robots
 
--   `GET /api/robots` - List robots with advanced filtering
+-   `GET /api/robots` - List robots with advanced filtering (paginated, default limit: 10)
+-   `GET /api/robots/all` - Get ALL robots without pagination or limits
 -   `GET /api/robots/:id` - Get robot by ID
+-   `GET /api/robots/type/:type` - Get robots by type with filtering
 -   `POST /api/robots` - Create new robot
 -   `PUT /api/robots/:id` - Update robot
 -   `DELETE /api/robots/:id` - Delete robot
@@ -317,7 +379,8 @@ All core features have been successfully implemented and tested:
 ### 🔧 Recent Updates:
 
 -   **Robot Schema**: `charge` field now uses `Number` type with validation (0-100)
--   **Seed Data**: 25 sample robots with realistic numeric charge values
+-   **Seed Data**: 50 sample robots with realistic numeric charge values
+-   **Unlimited Endpoint**: Added `/api/robots/all` for complete dataset access without pagination
 -   **Query Examples**: Updated documentation with numeric charge filtering examples
 -   **Type Safety**: Enhanced TypeScript interfaces for better development experience
 

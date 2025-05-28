@@ -5,7 +5,7 @@ export interface IRobot extends Document {
     type: "TUGGER" | "CONVEYOR" | "FORKLIFT";
     location: string;
     charge: number;
-    status: "ACTIVE" | "INACTIVE" | "CHARGING";
+    status: "ACTIVE" | "INACTIVE" | "CHARGING" | "ERROR";
     connectivity: "CONNECTED" | "DISCONNECTED";
     createdAt: Date;
     updatedAt: Date;
@@ -38,7 +38,7 @@ const robotSchema: Schema<IRobot> = new Schema(
         status: {
             type: String,
             required: true,
-            enum: ["ACTIVE", "INACTIVE", "CHARGING"],
+            enum: ["ACTIVE", "INACTIVE", "CHARGING", "ERROR"],
         },
         connectivity: {
             type: String,
