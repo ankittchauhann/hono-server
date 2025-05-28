@@ -1,10 +1,10 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { type Document, Schema } from "mongoose";
 
 export interface IRobot extends Document {
     serialNumber: string;
     type: "TUGGER" | "CONVEYOR" | "FORKLIFT";
     location: string;
-    charge: string;
+    charge: number;
     status: "ACTIVE" | "INACTIVE" | "CHARGING";
     connectivity: "CONNECTED" | "DISCONNECTED";
     createdAt: Date;
@@ -30,8 +30,10 @@ const robotSchema: Schema<IRobot> = new Schema(
             trim: true,
         },
         charge: {
-            type: String,
+            type: Number,
             required: true,
+            min: [0, "Charge cannot be negative"],
+            max: [100, "Charge cannot exceed 100%"],
         },
         status: {
             type: String,
