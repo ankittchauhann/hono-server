@@ -3,12 +3,15 @@
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "start": "bun run src/index.ts",
-    "seed": "bun run src/scripts/seedDatabase.ts"
+    "seed": "bun run src/scripts/seedDatabase.ts",
+    "seed:users": "bun run src/scripts/seedUsers.ts",
+    "seed:all": "bun run src/scripts/seedUsers.ts && bun run src/scripts/seedDatabase.ts"
   },
   "dependencies": {
     "@types/mongoose": "^5.11.97",
     "hono": "^4.7.10",
-    "mongoose": "^8.15.1"
+    "mongoose": "^8.15.1",
+    "zod": "^3.25.32"
   },
   "devDependencies": {
     "@types/bun": "latest"

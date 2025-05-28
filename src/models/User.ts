@@ -1,54 +1,112 @@
-import mongoose, { Schema, type Document } from "mongoose";
+import {
+    type RoleType,
+    jwtUserProperties,
+    roleTypes,
+} from "../constants/config";
+import { objectIdSchema } from "../utils/customSchemas";
+import { generateJWTtoken } from "../utils/generateJWTtoken";
+import { type Document, type ObjectId, Schema, model } from "mongoose";
+import { z } from "zod";
 
+// Zod schema for User
+export const userSchema = z.object({
+    name: z
+        .string({
+            required_error: "Name is required",
+        })
+        .min(3)
+        .max(50),
+    email: z
+        .string({
+            required_error: "Email is required",
+        })
+        .email("Please enter a valid email address.")
+        .max(255),
+    password: z
+        .string({
+            required_error: "Password is required",
+        })
+        .min(6)
+        .max(255),
+    role: z.enum(roleTypes),
+    createdBy: objectIdSchema.optional(),
+    updatedBy: objectIdSchema.optional(),
+    isActive: z.boolean().default(true),
+    invalid: z.boolean().optional(),
+});
+
+export const authUserSchema = userSchema.pick({ email: true, password: true });
+
+export const updateUserSchema = userSchema
+    .pick({
+        name: true,
+        email: true,
+        isActive: true,
+        role: true,
+    })
+    .partial();
+
+export const resetPasswordSchema = z.object({
+    authPassword: z.string().min(6).max(255),
+    newPassword: z.string().min(6).max(255),
+});
+
+// MongoDB document interface for User
 export interface IUser extends Document {
-    userId: string;
-    username: string;
+    name: string;
     email: string;
-    role: "admin" | "operator" | "viewer";
-    department: string;
+    password: string;
+    role: RoleType;
+    createdBy: ObjectId;
+    updatedBy: ObjectId;
     isActive: boolean;
-    createdAt: Date;
-    updatedAt: Date;
+    invalid: boolean;
+    generateAuthToken: () => string;
 }
 
-const UserSchema = new Schema<IUser>(
+// Mongoose schema for User
+const userMongooseSchema = new Schema<IUser>(
     {
-        userId: {
-            type: String,
-            required: true,
-            unique: true,
-            match: /^USR\d{4}$/,
-            description: "UserId field",
-        },
-        username: {
+        name: {
             type: String,
             required: true,
             trim: true,
-            minlength: 3,
+            minLength: 3,
             maxlength: 50,
         },
         email: {
             type: String,
             required: true,
             unique: true,
-            lowercase: true,
-            match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        },
-        role: {
-            type: String,
-            required: true,
-            enum: ["admin", "operator", "viewer"],
-            default: "viewer",
-        },
-        department: {
-            type: String,
-            required: true,
+            minLength: 5,
+            maxlength: 255,
             trim: true,
+        },
+        password: {
+            type: String,
+            required: true,
+            minLength: 6,
+            maxlength: 1024,
         },
         isActive: {
             type: Boolean,
-            required: true,
             default: true,
+        },
+        role: {
+            type: String,
+            enum: roleTypes,
+            default: roleTypes[0],
+        },
+        createdBy: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+        updatedBy: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+        invalid: {
+            type: Boolean,
         },
     },
     {
@@ -56,11 +114,13 @@ const UserSchema = new Schema<IUser>(
     }
 );
 
-// Create indexes
-UserSchema.index({ userId: 1 });
-UserSchema.index({ email: 1 });
-UserSchema.index({ department: 1 });
-UserSchema.index({ role: 1 });
-UserSchema.index({ isActive: 1 });
+userMongooseSchema.methods.generateAuthToken = function () {
+    return generateJWTtoken(jwtUserProperties, this);
+};
 
-export const User = mongoose.model<IUser>("User", UserSchema);
+// Create indexes
+userMongooseSchema.index({ role: 1 });
+userMongooseSchema.index({ isActive: 1 });
+
+// User model
+export const User = model<IUser>("User", userMongooseSchema);

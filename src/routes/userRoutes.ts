@@ -5,6 +5,8 @@ import {
     getUserById,
     updateUser,
     deleteUser,
+    authenticateUser,
+    resetPassword,
 } from "../controllers/UserController";
 import { performanceMiddleware } from "../middleware/performance";
 
@@ -16,8 +18,12 @@ userRoutes.use("*", performanceMiddleware);
 // User routes
 userRoutes.get("/", getAllUsers);
 userRoutes.post("/", createUser);
-userRoutes.get("/:userId", getUserById);
-userRoutes.put("/:userId", updateUser);
-userRoutes.delete("/:userId", deleteUser);
+userRoutes.get("/:id", getUserById);
+userRoutes.put("/:id", updateUser);
+userRoutes.delete("/:id", deleteUser);
+
+// Authentication routes
+userRoutes.post("/auth", authenticateUser);
+userRoutes.post("/:id/reset-password", resetPassword);
 
 export default userRoutes;
