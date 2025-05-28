@@ -57,8 +57,8 @@ export const getAllUsers = async (c: Context) => {
         return c.json(
             {
                 success: false,
-                error: "Failed to fetch users",
-                message:
+                message: "Failed to fetch users",
+                details:
                     error instanceof Error ? error.message : "Unknown error",
             },
             500
@@ -80,7 +80,7 @@ export const getUserById = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "User not found",
+                    message: "User not found",
                 },
                 404
             );
@@ -95,8 +95,8 @@ export const getUserById = async (c: Context) => {
         return c.json(
             {
                 success: false,
-                error: "Failed to fetch user",
-                message:
+                message: "Failed to fetch user",
+                details:
                     error instanceof Error ? error.message : "Unknown error",
             },
             500
@@ -139,7 +139,7 @@ export const createUser = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "User with this email already exists",
+                    message: "User with this email already exists",
                 },
                 409
             );
@@ -150,7 +150,7 @@ export const createUser = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "Validation failed",
+                    message: "Validation failed",
                     details: JSON.parse(error.message),
                 },
                 400
@@ -160,8 +160,8 @@ export const createUser = async (c: Context) => {
         return c.json(
             {
                 success: false,
-                error: "Failed to create user",
-                message:
+                message: "Failed to create user",
+                details:
                     error instanceof Error ? error.message : "Unknown error",
             },
             400
@@ -190,7 +190,7 @@ export const updateUser = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "User not found",
+                    message: "User not found",
                 },
                 404
             );
@@ -209,7 +209,7 @@ export const updateUser = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "Validation failed",
+                    message: "Validation failed",
                     details: JSON.parse(error.message),
                 },
                 400
@@ -219,8 +219,8 @@ export const updateUser = async (c: Context) => {
         return c.json(
             {
                 success: false,
-                error: "Failed to update user",
-                message:
+                message: "Failed to update user",
+                details:
                     error instanceof Error ? error.message : "Unknown error",
             },
             400
@@ -239,7 +239,7 @@ export const deleteUser = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "User not found",
+                    message: "User not found",
                 },
                 404
             );
@@ -254,8 +254,8 @@ export const deleteUser = async (c: Context) => {
         return c.json(
             {
                 success: false,
-                error: "Failed to delete user",
-                message:
+                message: "Failed to delete user",
+                details:
                     error instanceof Error ? error.message : "Unknown error",
             },
             500
@@ -277,7 +277,7 @@ export const authenticateUser = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "Invalid email or password",
+                    message: "Invalid email or password",
                 },
                 401
             );
@@ -288,7 +288,7 @@ export const authenticateUser = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "Invalid email or password",
+                    message: "Invalid email or password",
                 },
                 401
             );
@@ -298,7 +298,7 @@ export const authenticateUser = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "Account is deactivated",
+                    message: "Account is deactivated",
                 },
                 403
             );
@@ -326,7 +326,7 @@ export const authenticateUser = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "Validation failed",
+                    message: "Validation failed",
                     details: JSON.parse(error.message),
                 },
                 400
@@ -336,8 +336,8 @@ export const authenticateUser = async (c: Context) => {
         return c.json(
             {
                 success: false,
-                error: "Authentication failed",
-                message:
+                message: "Authentication failed",
+                details:
                     error instanceof Error ? error.message : "Unknown error",
             },
             500
@@ -360,7 +360,7 @@ export const resetPassword = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "User not found",
+                    message: "User not found",
                 },
                 404
             );
@@ -371,7 +371,7 @@ export const resetPassword = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "Current password is incorrect",
+                    message: "Current password is incorrect",
                 },
                 401
             );
@@ -393,7 +393,7 @@ export const resetPassword = async (c: Context) => {
             return c.json(
                 {
                     success: false,
-                    error: "Validation failed",
+                    message: "Validation failed",
                     details: JSON.parse(error.message),
                 },
                 400
@@ -403,8 +403,8 @@ export const resetPassword = async (c: Context) => {
         return c.json(
             {
                 success: false,
-                error: "Failed to reset password",
-                message:
+                message: "Failed to reset password",
+                details:
                     error instanceof Error ? error.message : "Unknown error",
             },
             500
