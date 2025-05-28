@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const MONGODB_URI =
     process.env.MONGODB_URI ||
-    "mongodb://root:123456@localhost:27018/admin?directConnection=true&authSource=admin&replicaSet=anya-rs";
+    "mongodb://root:123456@localhost:27018/TestDB?directConnection=true&authSource=admin&replicaSet=anya-rs";
 
 export const connectDatabase = async () => {
     try {

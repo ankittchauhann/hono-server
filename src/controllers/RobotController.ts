@@ -200,9 +200,9 @@ export async function updateRobot(c: Context) {
 // Delete robot by serial number
 export async function deleteRobot(c: Context) {
     try {
-        const serialNumber = c.req.param("serialNumber");
+        const id = c.req.param("id");
 
-        const robot = await Robot.findOneAndDelete({ serialNumber });
+        const robot = await Robot.findByIdAndDelete(id);
 
         if (!robot) {
             return c.json(
@@ -295,6 +295,40 @@ export async function getRobotsByType(c: Context) {
             {
                 success: false,
                 error: "Failed to fetch robots by type",
+                message:
+                    error instanceof Error ? error.message : "Unknown error",
+            },
+            500
+        );
+    }
+}
+
+// Get robot by ID
+export async function getRobotById(c: Context) {
+    try {
+        const id = c.req.param("id");
+        const robot = await Robot.findById(id).lean();
+
+        if (!robot) {
+            return c.json(
+                {
+                    success: false,
+                    error: "Robot not found",
+                },
+                404
+            );
+        }
+
+        return c.json({
+            success: true,
+            data: robot,
+        });
+    } catch (error) {
+        console.error("Error in getRobotById:", error);
+        return c.json(
+            {
+                success: false,
+                error: "Failed to fetch robot",
                 message:
                     error instanceof Error ? error.message : "Unknown error",
             },
