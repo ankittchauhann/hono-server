@@ -7,6 +7,7 @@ import {
     resetPasswordSchema,
 } from "../models/User";
 import { buildQuery } from "../utils/queryParser";
+import { auth } from "../lib/auth";
 
 // Get all users with filtering, sorting, pagination
 export const getAllUsers = async (c: Context) => {
@@ -174,9 +175,15 @@ export const updateUser = async (c: Context) => {
     try {
         const id = c.req.param("id");
         const requestData = await c.req.json();
+        const currentUser = c.get("user"); // From auth middleware
 
         // Validate with update schema
         const validatedData = updateUserSchema.parse(requestData);
+
+        // Add updatedBy field if user is authenticated
+        if (currentUser) {
+            validatedData.updatedBy = currentUser.id;
+        }
 
         const user = await User.findByIdAndUpdate(id, validatedData, {
             new: true,

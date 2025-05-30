@@ -3,15 +3,23 @@ import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { connectDatabase } from "./config/database";
 import { routes } from "./routes";
+import { auth } from "./lib/auth";
+import { authMiddleware } from "./middleware/auth";
 
 const app = new Hono();
 
 // Middleware
 app.use("*", cors());
 app.use("*", logger());
+app.use("*", authMiddleware);
 
 // Connect to database
 connectDatabase();
+
+// Better-auth API routes
+app.on(["POST", "GET"], "/api/auth/*", (c) => {
+    return auth.handler(c.req.raw);
+});
 
 // Health check endpoint
 app.get("/", (c) => {
