@@ -50,7 +50,16 @@ export const auth = betterAuth({
             },
         },
     },
-    trustedOrigins: ["http://localhost:5005"],
+    trustedOrigins: [
+        process.env.BETTER_AUTH_URL || "http://localhost:5005",
+        process.env.FRONTEND_URL || "http://localhost:3000",
+        "http://localhost:3000", // React default
+        "http://localhost:5173", // Vite default
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
+        "http://localhost:8080", // Vue/Webpack default
+        "http://localhost:4200", // Angular default
+    ],
 });
 
 export type Session = typeof auth.$Infer.Session.session;
