@@ -7,7 +7,7 @@ import {
     resetPasswordSchema,
 } from "../models/User";
 import { buildQuery } from "../utils/queryParser";
-import { auth } from "../lib/auth";
+import AuthUsers from "../models/auth-user";
 
 // Get all users with filtering, sorting, pagination
 export const getAllUsers = async (c: Context) => {
@@ -22,22 +22,18 @@ export const getAllUsers = async (c: Context) => {
             "role",
             "isActive",
             "invalid",
-            "createdBy",
-            "updatedBy",
             "createdAt",
             "updatedAt",
         ]);
 
-        const users = await User.find(filter)
+        const users = await AuthUsers.find(filter)
             .sort(options.sort)
             .limit(pagination.limit)
             .skip(pagination.skip)
             .select(options.select)
-            .populate("createdBy", "name email")
-            .populate("updatedBy", "name email")
             .lean();
 
-        const totalCount = await User.countDocuments(filter);
+        const totalCount = await AuthUsers.countDocuments(filter);
         const totalPages = Math.ceil(totalCount / pagination.limit);
 
         return c.json({
@@ -72,10 +68,7 @@ export const getUserById = async (c: Context) => {
     try {
         const id = c.req.param("id");
 
-        const user = await User.findById(id)
-            .populate("createdBy", "name email")
-            .populate("updatedBy", "name email")
-            .lean();
+        const user = await AuthUsers.findById(id).lean();
 
         if (!user) {
             return c.json(
@@ -180,18 +173,10 @@ export const updateUser = async (c: Context) => {
         // Validate with update schema
         const validatedData = updateUserSchema.parse(requestData);
 
-        // Add updatedBy field if user is authenticated
-        if (currentUser) {
-            validatedData.updatedBy = currentUser.id;
-        }
-
-        const user = await User.findByIdAndUpdate(id, validatedData, {
+        const user = await AuthUsers.findByIdAndUpdate(id, validatedData, {
             new: true,
             runValidators: true,
-        })
-            .populate("createdBy", "name email")
-            .populate("updatedBy", "name email")
-            .lean();
+        }).lean();
 
         if (!user) {
             return c.json(

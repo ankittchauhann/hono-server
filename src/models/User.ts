@@ -29,8 +29,6 @@ export const userSchema = z.object({
         .min(6)
         .max(255),
     role: z.enum(roleTypes),
-    createdBy: objectIdSchema.optional(),
-    updatedBy: objectIdSchema.optional(),
     isActive: z.boolean().default(true),
     invalid: z.boolean().optional(),
 });
@@ -57,8 +55,6 @@ export interface IUser extends Document {
     email: string;
     password: string;
     role: RoleType;
-    createdBy: ObjectId;
-    updatedBy: ObjectId;
     isActive: boolean;
     invalid: boolean;
     generateAuthToken: () => string;
@@ -96,14 +92,6 @@ const userMongooseSchema = new Schema<IUser>(
             type: String,
             enum: roleTypes,
             default: roleTypes[0],
-        },
-        createdBy: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-        },
-        updatedBy: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
         },
         invalid: {
             type: Boolean,
