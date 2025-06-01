@@ -3,15 +3,42 @@ import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { connectDatabase } from "./config/database";
 import { routes } from "./routes";
+import { auth } from "./lib/auth";
+import { authMiddleware } from "./middleware/auth";
 
 const app = new Hono();
 
+// Get frontend URL from environment or use defaults
+const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
+const allowedOrigins = [
+    frontendUrl,
+    "http://localhost:3000", // React default
+    "http://localhost:5173", // Vite default
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173",
+    "http://localhost:8080", // Vue/Webpack default
+    "http://localhost:4200", // Angular default
+];
+
 // Middleware
-app.use("*", cors());
+app.use(
+    "*",
+    cors({
+        origin: allowedOrigins,
+        credentials: true,
+        allowHeaders: ["Content-Type", "Authorization"],
+    })
+);
 app.use("*", logger());
+app.use("*", authMiddleware);
 
 // Connect to database
 connectDatabase();
+
+// Better-auth API routes
+app.on(["POST", "GET"], "/api/auth/*", (c) => {
+    return auth.handler(c.req.raw);
+});
 
 // Health check endpoint
 app.get("/", (c) => {

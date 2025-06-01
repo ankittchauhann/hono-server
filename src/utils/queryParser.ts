@@ -1,5 +1,36 @@
 import type { FilterQuery, QueryOptions, Schema } from "mongoose";
 
+// Helper function to convert string values to appropriate types
+function convertStringToType(
+    value: string | undefined,
+    fieldName?: string
+): any {
+    if (value === undefined) return value;
+
+    // Convert boolean strings
+    if (value === "true") return true;
+    if (value === "false") return false;
+
+    // Convert numeric strings
+    if (/^\d+$/.test(value)) {
+        return Number(value);
+    }
+
+    // Convert decimal numbers
+    if (/^\d*\.\d+$/.test(value)) {
+        return Number(value);
+    }
+
+    // For text fields like name, email, etc., make them case-insensitive
+    const textFields = ["name", "email"];
+    if (fieldName && textFields.includes(fieldName.toLowerCase())) {
+        return { $regex: new RegExp(value, "i") };
+    }
+
+    // Return as string for everything else
+    return value;
+}
+
 export interface QueryParams {
     [key: string]: string | undefined;
     sort?: string;
@@ -117,11 +148,24 @@ function buildQuery<T>(
             } else {
                 // Basic Filtering with multiple values support
                 if (typeof value === "string" && value.includes(",")) {
-                    (query as Record<string, unknown>)[key] = {
-                        $in: value.split(","),
-                    };
+                    const values = value.split(",");
+                    // For text fields, make each value case-insensitive
+                    const textFields = ["name", "email"];
+                    if (textFields.includes(key.toLowerCase())) {
+                        (query as Record<string, unknown>)[key] = {
+                            $in: values.map((v) => new RegExp(v.trim(), "i")),
+                        };
+                    } else {
+                        (query as Record<string, unknown>)[key] = {
+                            $in: values.map((v) =>
+                                convertStringToType(v.trim(), key)
+                            ),
+                        };
+                    }
                 } else {
-                    (query as Record<string, unknown>)[key] = value;
+                    // Convert string values to appropriate types
+                    (query as Record<string, unknown>)[key] =
+                        convertStringToType(value, key);
                 }
             }
         }

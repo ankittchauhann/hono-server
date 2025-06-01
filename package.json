@@ -5,11 +5,15 @@
     "start": "bun run src/index.ts",
     "seed": "bun run src/scripts/seedDatabase.ts",
     "seed:users": "bun run src/scripts/seedUsers.ts",
-    "seed:all": "bun run src/scripts/seedUsers.ts && bun run src/scripts/seedDatabase.ts"
+    "seed:all": "bun run src/scripts/seedUsers.ts && bun run src/scripts/seedDatabase.ts",
+    "migrate:auth": "bun run src/scripts/migrateToBetterAuth.ts",
+    "inspect:auth": "bun run src/scripts/inspectAuthData.ts"
   },
   "dependencies": {
     "@types/mongoose": "^5.11.97",
+    "better-auth": "^1.2.8",
     "hono": "^4.7.10",
+    "mongodb": "^6.16.0",
     "mongoose": "^8.15.1",
     "zod": "^3.25.32"
   },
