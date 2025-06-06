@@ -125,12 +125,38 @@ httpServer.on("request", async (req, res) => {
         // Set status code
         res.statusCode = response.status;
         
-        // Send response body
-        if (response.body) {
-            const buffer = await response.arrayBuffer();
-            res.end(Buffer.from(buffer));
+        // Handle streaming responses (Server-Sent Events)
+        if (response.headers.get('content-type')?.includes('text/event-stream')) {
+            // For SSE, we need to pipe the stream directly
+            if (response.body) {
+                const reader = response.body.getReader();
+                
+                const pump = async () => {
+                    try {
+                        while (true) {
+                            const { done, value } = await reader.read();
+                            if (done) break;
+                            res.write(value);
+                        }
+                        res.end();
+                    } catch (error) {
+                        console.error('Streaming error:', error);
+                        res.end();
+                    }
+                };
+                
+                pump();
+            } else {
+                res.end();
+            }
         } else {
-            res.end();
+            // Send response body for non-streaming responses
+            if (response.body) {
+                const buffer = await response.arrayBuffer();
+                res.end(Buffer.from(buffer));
+            } else {
+                res.end();
+            }
         }
     } catch (error) {
         console.error("Error handling request:", error);

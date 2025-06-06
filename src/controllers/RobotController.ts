@@ -1,6 +1,88 @@
 import type { Context } from "hono";
+import { streamSSE } from "hono/streaming";
 import { Robot, type IRobot } from "../models/Robot";
 import { buildQuery, BadRequestError } from "../utils/queryParser";
+
+let streamId = 0;
+
+// Stream robots with filtering and sorting capabilities
+export async function streamRobots(c: Context) {
+    console.log('streamRobots function called');
+    return streamSSE(
+        c,
+        async (stream) => {
+            console.log('Stream callback started');
+            // Handle client disconnection
+            stream.onAbort(() => {
+                console.log('Robot stream client disconnected');
+            });
+
+            // Continuously send filtered and sorted robot data
+            while (true) {
+                try {
+                    const {
+                        query: filter,
+                        options,
+                    } = buildQuery(c.req.query(), [
+                        "serialNumber",
+                        "type",
+                        "location",
+                        "charge",
+                        "status",
+                        "connectivity",
+                        "createdAt",
+                        "updatedAt",
+                    ]);
+
+
+                    const robots = await Robot.find(filter)
+                        .sort(options.sort || { createdAt: -1 })
+                        .select(options.select)
+                        .lean();
+
+
+                    await stream.writeSSE({
+                        data: JSON.stringify({
+                            success: true,
+                            data: robots,
+                            count: robots.length,
+                            timestamp: new Date().toISOString(),
+                            appliedFilters: filter,
+                        }),
+                        event: 'robot:data',
+                        id: String(streamId++),
+                    });
+                    
+                } catch (error) {
+                    console.error('Error in robot stream:', error);
+                    await stream.writeSSE({
+                        data: JSON.stringify({
+                            success: false,
+                            error: error instanceof Error ? error.message : 'Unknown error',
+                            timestamp: new Date().toISOString(),
+                        }),
+                        event: 'robot:error',
+                        id: String(streamId++),
+                    });
+                }
+
+                await stream.sleep(2000); // Send update every 2 seconds
+            }
+        },
+        async (err, stream) => {
+            console.error('Robot stream error:', err);
+            await stream.writeSSE({
+                data: JSON.stringify({
+                    success: false,
+                    error: 'Stream error occurred',
+                    timestamp: new Date().toISOString(),
+                }),
+                event: 'error',
+                id: String(streamId++),
+            });
+        }
+    );
+}
 
 // Get all robots with advanced querying
 export async function getAllRobots(c: Context) {

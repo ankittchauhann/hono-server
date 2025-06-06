@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { streamSSE } from "hono/streaming";
 import {
     createRobot,
     deleteRobot,
@@ -6,6 +7,7 @@ import {
     getAllRobotsUnlimited,
     getRobotById,
     getRobotsByType,
+    streamRobots,
     updateRobot,
 } from "../controllers/RobotController";
 
@@ -13,6 +15,9 @@ const robotRoutes = new Hono();
 
 // GET /robots - Get all robots
 robotRoutes.get("/", getAllRobots);
+
+// GET /robots/stream - Stream robots with filtering/sorting
+robotRoutes.get("/stream", streamRobots);
 
 // GET /robots/all - Get all robots without pagination
 robotRoutes.get("/all", getAllRobotsUnlimited);
