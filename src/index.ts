@@ -11,7 +11,7 @@ import { initializeSocket } from "./socket";
 const app = new Hono();
 
 // Get frontend URL from environment or use defaults
-const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
+const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
 const allowedOrigins = [
     frontendUrl,
     "http://localhost:3000", // React default
@@ -20,6 +20,8 @@ const allowedOrigins = [
     "http://127.0.0.1:5173",
     "http://localhost:8080", // Vue/Webpack default
     "http://localhost:4200", // Angular default
+    "http://192.168.1.29:5173",
+    "http://192.168.1.27:5173"
 ];
 
 // Middleware
@@ -27,8 +29,11 @@ app.use(
     "*",
     cors({
         origin: allowedOrigins,
-        credentials: true,
         allowHeaders: ["Content-Type", "Authorization"],
+        allowMethods: ["POST", "GET", "OPTIONS"],
+		exposeHeaders: ["Content-Length"],
+		maxAge: 600,
+		credentials: true,
     })
 );
 app.use("*", logger());

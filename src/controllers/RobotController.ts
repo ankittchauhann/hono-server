@@ -23,6 +23,7 @@ export async function streamRobots(c: Context) {
                     const {
                         query: filter,
                         options,
+                        pagination,
                     } = buildQuery(c.req.query(), [
                         "serialNumber",
                         "type",
@@ -34,20 +35,29 @@ export async function streamRobots(c: Context) {
                         "updatedAt",
                     ]);
 
-
                     const robots = await Robot.find(filter)
                         .sort(options.sort || { createdAt: -1 })
+                        .limit(pagination.limit)
+                        .skip(pagination.skip)
                         .select(options.select)
                         .lean();
 
+                    const totalCount = await Robot.countDocuments(filter);
+                    const totalPages = Math.ceil(totalCount / pagination.limit);
 
                     await stream.writeSSE({
                         data: JSON.stringify({
                             success: true,
                             data: robots,
+                            pagination: {
+                                currentPage: pagination.page,
+                                totalPages,
+                                totalCount,
+                                limit: pagination.limit,
+                                hasNext: pagination.page < totalPages,
+                                hasPrev: pagination.page > 1,
+                            },
                             count: robots.length,
-                            timestamp: new Date().toISOString(),
-                            appliedFilters: filter,
                         }),
                         event: 'robot:data',
                         id: String(streamId++),
