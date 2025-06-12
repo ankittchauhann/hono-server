@@ -23,8 +23,9 @@ GET /api/robots?status=ACTIVE
 # Get robots with specific type
 GET /api/robots?type=TUGGER
 
-# Get robots with specific connectivity
-GET /api/robots?connectivity=CONNECTED
+# Get robots with specific connectivity (boolean)
+GET /api/robots?connectivity=true
+GET /api/robots?connectivity=false
 ```
 
 ### Multiple Values (OR Filtering)
@@ -174,17 +175,17 @@ GET /api/robots?location=/waypoint [1-5]/i&status=ACTIVE,CHARGING&sort=serialNum
 ### Example 4: Paginated Results with Multiple Filters
 
 ```bash
-GET /api/robots?type=TUGGER,FORKLIFT&connectivity=CONNECTED&page=1&limit=5&sort=-updatedAt
+GET /api/robots?type=TUGGER,FORKLIFT&connectivity=true&page=1&limit=5&sort=-updatedAt
 ```
 
 ## Response Format
 
 All responses include:
 
--   `success`: Boolean indicating request success
--   `data`: Array of robot objects
--   `count`: Number of robots in current response
--   `pagination`: Pagination information (when applicable)
+- `success`: Boolean indicating request success
+- `data`: Array of robot objects
+- `count`: Number of robots in current response
+- `pagination`: Pagination information (when applicable)
 
 ### Sample Response
 
@@ -199,7 +200,7 @@ All responses include:
             "location": "Waypoint 1",
             "charge": "85%",
             "status": "ACTIVE",
-            "connectivity": "CONNECTED",
+            "connectivity": true,
             "createdAt": "2025-05-27T07:43:16.097Z",
             "updatedAt": "2025-05-27T07:43:16.097Z"
         }

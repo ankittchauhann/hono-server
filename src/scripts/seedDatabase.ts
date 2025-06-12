@@ -9,7 +9,7 @@ const sampleRobots = [
         location: "Waypoint 1",
         charge: 85,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR002",
@@ -17,7 +17,7 @@ const sampleRobots = [
         location: "Waypoint 3",
         charge: 45,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR003",
@@ -25,7 +25,7 @@ const sampleRobots = [
         location: "Waypoint 2",
         charge: 92,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR004",
@@ -33,7 +33,7 @@ const sampleRobots = [
         location: "Waypoint 5",
         charge: 12,
         status: "ERROR",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR005",
@@ -41,7 +41,7 @@ const sampleRobots = [
         location: "Waypoint 4",
         charge: 78,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR006",
@@ -49,7 +49,7 @@ const sampleRobots = [
         location: "Waypoint 6",
         charge: 23,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR007",
@@ -57,7 +57,7 @@ const sampleRobots = [
         location: "Waypoint 7",
         charge: 67,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR008",
@@ -65,7 +65,7 @@ const sampleRobots = [
         location: "Waypoint 8",
         charge: 3,
         status: "ERROR",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR009",
@@ -73,7 +73,7 @@ const sampleRobots = [
         location: "Waypoint 9",
         charge: 56,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR010",
@@ -81,7 +81,7 @@ const sampleRobots = [
         location: "Waypoint 10",
         charge: 34,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
 
     // Robots 11-20
@@ -91,7 +91,7 @@ const sampleRobots = [
         location: "Waypoint 11",
         charge: 88,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR012",
@@ -99,7 +99,7 @@ const sampleRobots = [
         location: "Waypoint 12",
         charge: 41,
         status: "INACTIVE",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR013",
@@ -107,7 +107,7 @@ const sampleRobots = [
         location: "Waypoint 13",
         charge: 95,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR014",
@@ -115,7 +115,7 @@ const sampleRobots = [
         location: "Waypoint 14",
         charge: 29,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR015",
@@ -123,7 +123,7 @@ const sampleRobots = [
         location: "Waypoint 15",
         charge: 61,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR016",
@@ -131,7 +131,7 @@ const sampleRobots = [
         location: "Waypoint 16",
         charge: 17,
         status: "ERROR",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR017",
@@ -139,7 +139,7 @@ const sampleRobots = [
         location: "Waypoint 17",
         charge: 80,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR018",
@@ -147,7 +147,7 @@ const sampleRobots = [
         location: "Waypoint 18",
         charge: 54,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR019",
@@ -155,7 +155,7 @@ const sampleRobots = [
         location: "Waypoint 19",
         charge: 73,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR020",
@@ -163,7 +163,7 @@ const sampleRobots = [
         location: "Waypoint 20",
         charge: 8,
         status: "INACTIVE",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
 
     // Robots 21-30
@@ -173,7 +173,7 @@ const sampleRobots = [
         location: "Waypoint 21",
         charge: 66,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR022",
@@ -181,7 +181,7 @@ const sampleRobots = [
         location: "Waypoint 22",
         charge: 39,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR023",
@@ -189,7 +189,7 @@ const sampleRobots = [
         location: "Waypoint 23",
         charge: 90,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR024",
@@ -197,7 +197,7 @@ const sampleRobots = [
         location: "Waypoint 24",
         charge: 21,
         status: "ERROR",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR025",
@@ -205,7 +205,7 @@ const sampleRobots = [
         location: "Waypoint 25",
         charge: 82,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR026",
@@ -213,7 +213,7 @@ const sampleRobots = [
         location: "Waypoint 26",
         charge: 47,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR027",
@@ -221,7 +221,7 @@ const sampleRobots = [
         location: "Waypoint 27",
         charge: 91,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR028",
@@ -229,7 +229,7 @@ const sampleRobots = [
         location: "Waypoint 28",
         charge: 15,
         status: "INACTIVE",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR029",
@@ -237,7 +237,7 @@ const sampleRobots = [
         location: "Waypoint 29",
         charge: 76,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR030",
@@ -245,7 +245,7 @@ const sampleRobots = [
         location: "Waypoint 30",
         charge: 33,
         status: "ERROR",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
 
     // Robots 31-40
@@ -255,7 +255,7 @@ const sampleRobots = [
         location: "Waypoint 31",
         charge: 69,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR032",
@@ -263,7 +263,7 @@ const sampleRobots = [
         location: "Waypoint 32",
         charge: 52,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR033",
@@ -271,7 +271,7 @@ const sampleRobots = [
         location: "Waypoint 33",
         charge: 84,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR034",
@@ -279,7 +279,7 @@ const sampleRobots = [
         location: "Waypoint 34",
         charge: 19,
         status: "INACTIVE",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR035",
@@ -287,7 +287,7 @@ const sampleRobots = [
         location: "Waypoint 35",
         charge: 75,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR036",
@@ -295,7 +295,7 @@ const sampleRobots = [
         location: "Waypoint 36",
         charge: 42,
         status: "ERROR",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR037",
@@ -303,7 +303,7 @@ const sampleRobots = [
         location: "Waypoint 37",
         charge: 87,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR038",
@@ -311,7 +311,7 @@ const sampleRobots = [
         location: "Waypoint 38",
         charge: 26,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR039",
@@ -319,7 +319,7 @@ const sampleRobots = [
         location: "Waypoint 39",
         charge: 63,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR040",
@@ -327,7 +327,7 @@ const sampleRobots = [
         location: "Waypoint 40",
         charge: 11,
         status: "INACTIVE",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
 
     // Robots 41-50
@@ -337,7 +337,7 @@ const sampleRobots = [
         location: "Waypoint 41",
         charge: 89,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR042",
@@ -345,7 +345,7 @@ const sampleRobots = [
         location: "Waypoint 42",
         charge: 37,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR043",
@@ -353,7 +353,7 @@ const sampleRobots = [
         location: "Waypoint 43",
         charge: 71,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR044",
@@ -361,7 +361,7 @@ const sampleRobots = [
         location: "Waypoint 44",
         charge: 14,
         status: "ERROR",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR045",
@@ -369,7 +369,7 @@ const sampleRobots = [
         location: "Waypoint 45",
         charge: 93,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR046",
@@ -377,7 +377,7 @@ const sampleRobots = [
         location: "Waypoint 46",
         charge: 48,
         status: "CHARGING",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR047",
@@ -385,7 +385,7 @@ const sampleRobots = [
         location: "Waypoint 47",
         charge: 77,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR048",
@@ -393,7 +393,7 @@ const sampleRobots = [
         location: "Waypoint 48",
         charge: 24,
         status: "INACTIVE",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
     {
         serialNumber: "AR049",
@@ -401,7 +401,7 @@ const sampleRobots = [
         location: "Waypoint 49",
         charge: 86,
         status: "ACTIVE",
-        connectivity: "CONNECTED",
+        connectivity: true,
     },
     {
         serialNumber: "AR050",
@@ -409,7 +409,7 @@ const sampleRobots = [
         location: "Waypoint 50",
         charge: 55,
         status: "ERROR",
-        connectivity: "DISCONNECTED",
+        connectivity: false,
     },
 ];
 

@@ -69,8 +69,7 @@ export const apiDocumentation = {
                     location: "string (required)",
                     charge: "string (required, format: 85%)",
                     status: "string (required, enum: ACTIVE|INACTIVE|CHARGING)",
-                    connectivity:
-                        "string (required, enum: CONNECTED|DISCONNECTED)",
+                    connectivity: "boolean (required, true=connected, false=disconnected)",
                 },
                 response: {
                     success: true,

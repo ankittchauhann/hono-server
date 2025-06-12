@@ -44,13 +44,10 @@ export const validateRobotData = (data: any): RobotValidationError[] => {
     }
 
     // Connectivity validation
-    const validConnectivity = ["CONNECTED", "DISCONNECTED"];
-    if (data.connectivity && !validConnectivity.includes(data.connectivity)) {
+    if (data.connectivity !== undefined && typeof data.connectivity !== "boolean") {
         errors.push({
             field: "connectivity",
-            message: `Connectivity must be one of: ${validConnectivity.join(
-                ", "
-            )}`,
+            message: "Connectivity must be a boolean value (true for connected, false for disconnected)",
         });
     }
 
