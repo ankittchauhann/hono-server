@@ -27,6 +27,7 @@ export async function streamRobots(c: Context) {
                     } = buildQuery(c.req.query(), [
                         "serialNumber",
                         "type",
+                        "manufacturer",
                         "location",
                         "charge",
                         "status",
@@ -104,6 +105,7 @@ export async function getAllRobots(c: Context) {
         } = buildQuery(c.req.query(), [
             "serialNumber",
             "type",
+            "manufacturer",
             "location",
             "charge",
             "status",
@@ -222,9 +224,20 @@ export async function getRobotBySerial(c: Context) {
 // Create new robot
 export async function createRobot(c: Context) {
     try {
-        const robotData = await c.req.json();
+        //while adding a new robot, i will pass only manufacturer and serialNumber for now in body, need to add more field in that object temporarily
 
-        const robot = new Robot(robotData);
+        const robotData = await c.req.json();
+        const tempdata = {
+            manufacturer: robotData.manufacturer,
+            serialNumber: robotData.serialNumber,
+            type: robotData.type || "TUGGER", // Default to TUGGER if not provided
+            location: robotData.location || "Unknown", // Default to Unknown if not provided
+            charge: robotData.charge || 100, // Default to 100% if not provided
+            status: robotData.status || "ACTIVE", // Default to ACTIVE if not provided
+            connectivity: robotData.connectivity || true, // Default to true if not provided
+        };
+
+        const robot = new Robot(tempdata);
         await robot.save();
 
         return c.json(
@@ -360,6 +373,7 @@ export async function getRobotsByType(c: Context) {
             pagination,
         } = buildQuery(c.req.query(), [
             "serialNumber",
+            "manufacturer",
             "location",
             "charge",
             "status",

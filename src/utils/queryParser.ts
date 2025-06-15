@@ -4,7 +4,7 @@ import type { FilterQuery, QueryOptions, Schema } from "mongoose";
 function convertStringToType(
     value: string | undefined,
     fieldName?: string
-): any {
+): unknown {
     if (value === undefined) return value;
 
     // Convert boolean strings
@@ -22,7 +22,7 @@ function convertStringToType(
     }
 
     // For text fields like name, email, etc., make them case-insensitive
-    const textFields = ["name", "email"];
+    const textFields = ["name", "email", "manufacturer", "location"];
     if (fieldName && textFields.includes(fieldName.toLowerCase())) {
         return { $regex: new RegExp(value, "i") };
     }
@@ -150,7 +150,7 @@ function buildQuery<T>(
                 if (typeof value === "string" && value.includes(",")) {
                     const values = value.split(",");
                     // For text fields, make each value case-insensitive
-                    const textFields = ["name", "email"];
+                    const textFields = ["name", "email", "manufacturer", "location"];
                     if (textFields.includes(key.toLowerCase())) {
                         (query as Record<string, unknown>)[key] = {
                             $in: values.map((v) => new RegExp(v.trim(), "i")),

@@ -6,6 +6,7 @@ const sampleRobots = [
     {
         serialNumber: "AR001",
         type: "TUGGER",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 1",
         charge: 85,
         status: "ACTIVE",
@@ -14,6 +15,7 @@ const sampleRobots = [
     {
         serialNumber: "AR002",
         type: "CONVEYOR",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 3",
         charge: 45,
         status: "CHARGING",
@@ -22,6 +24,7 @@ const sampleRobots = [
     {
         serialNumber: "AR003",
         type: "FORKLIFT",
+        manufacturer: "KUKA",
         location: "Waypoint 2",
         charge: 92,
         status: "ACTIVE",
@@ -30,6 +33,7 @@ const sampleRobots = [
     {
         serialNumber: "AR004",
         type: "TUGGER",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 5",
         charge: 12,
         status: "ERROR",
@@ -38,6 +42,7 @@ const sampleRobots = [
     {
         serialNumber: "AR005",
         type: "CONVEYOR",
+        manufacturer: "Fanuc",
         location: "Waypoint 4",
         charge: 78,
         status: "ACTIVE",
@@ -46,6 +51,7 @@ const sampleRobots = [
     {
         serialNumber: "AR006",
         type: "FORKLIFT",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 6",
         charge: 23,
         status: "CHARGING",
@@ -54,6 +60,7 @@ const sampleRobots = [
     {
         serialNumber: "AR007",
         type: "TUGGER",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 7",
         charge: 67,
         status: "ACTIVE",
@@ -62,6 +69,7 @@ const sampleRobots = [
     {
         serialNumber: "AR008",
         type: "CONVEYOR",
+        manufacturer: "KUKA",
         location: "Waypoint 8",
         charge: 3,
         status: "ERROR",
@@ -70,6 +78,7 @@ const sampleRobots = [
     {
         serialNumber: "AR009",
         type: "FORKLIFT",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 9",
         charge: 56,
         status: "ACTIVE",
@@ -78,6 +87,7 @@ const sampleRobots = [
     {
         serialNumber: "AR010",
         type: "TUGGER",
+        manufacturer: "Fanuc",
         location: "Waypoint 10",
         charge: 34,
         status: "CHARGING",
@@ -88,6 +98,7 @@ const sampleRobots = [
     {
         serialNumber: "AR011",
         type: "CONVEYOR",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 11",
         charge: 88,
         status: "ACTIVE",
@@ -96,6 +107,7 @@ const sampleRobots = [
     {
         serialNumber: "AR012",
         type: "FORKLIFT",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 12",
         charge: 41,
         status: "INACTIVE",
@@ -104,6 +116,7 @@ const sampleRobots = [
     {
         serialNumber: "AR013",
         type: "TUGGER",
+        manufacturer: "KUKA",
         location: "Waypoint 13",
         charge: 95,
         status: "ACTIVE",
@@ -112,6 +125,7 @@ const sampleRobots = [
     {
         serialNumber: "AR014",
         type: "CONVEYOR",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 14",
         charge: 29,
         status: "CHARGING",
@@ -120,6 +134,7 @@ const sampleRobots = [
     {
         serialNumber: "AR015",
         type: "FORKLIFT",
+        manufacturer: "Fanuc",
         location: "Waypoint 15",
         charge: 61,
         status: "ACTIVE",
@@ -128,6 +143,7 @@ const sampleRobots = [
     {
         serialNumber: "AR016",
         type: "TUGGER",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 16",
         charge: 17,
         status: "ERROR",
@@ -136,6 +152,7 @@ const sampleRobots = [
     {
         serialNumber: "AR017",
         type: "CONVEYOR",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 17",
         charge: 80,
         status: "ACTIVE",
@@ -144,6 +161,7 @@ const sampleRobots = [
     {
         serialNumber: "AR018",
         type: "FORKLIFT",
+        manufacturer: "KUKA",
         location: "Waypoint 18",
         charge: 54,
         status: "CHARGING",
@@ -152,6 +170,7 @@ const sampleRobots = [
     {
         serialNumber: "AR019",
         type: "TUGGER",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 19",
         charge: 73,
         status: "ACTIVE",
@@ -160,6 +179,7 @@ const sampleRobots = [
     {
         serialNumber: "AR020",
         type: "CONVEYOR",
+        manufacturer: "Fanuc",
         location: "Waypoint 20",
         charge: 8,
         status: "INACTIVE",
@@ -170,6 +190,7 @@ const sampleRobots = [
     {
         serialNumber: "AR021",
         type: "FORKLIFT",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 21",
         charge: 66,
         status: "ACTIVE",
@@ -178,6 +199,7 @@ const sampleRobots = [
     {
         serialNumber: "AR022",
         type: "TUGGER",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 22",
         charge: 39,
         status: "CHARGING",
@@ -186,6 +208,7 @@ const sampleRobots = [
     {
         serialNumber: "AR023",
         type: "CONVEYOR",
+        manufacturer: "KUKA",
         location: "Waypoint 23",
         charge: 90,
         status: "ACTIVE",
@@ -194,14 +217,16 @@ const sampleRobots = [
     {
         serialNumber: "AR024",
         type: "FORKLIFT",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 24",
         charge: 21,
         status: "ERROR",
         connectivity: false,
-    },
+        },
     {
         serialNumber: "AR025",
         type: "TUGGER",
+        manufacturer: "Fanuc",
         location: "Waypoint 25",
         charge: 82,
         status: "ACTIVE",
@@ -210,6 +235,7 @@ const sampleRobots = [
     {
         serialNumber: "AR026",
         type: "CONVEYOR",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 26",
         charge: 47,
         status: "CHARGING",
@@ -218,6 +244,7 @@ const sampleRobots = [
     {
         serialNumber: "AR027",
         type: "FORKLIFT",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 27",
         charge: 91,
         status: "ACTIVE",
@@ -226,6 +253,7 @@ const sampleRobots = [
     {
         serialNumber: "AR028",
         type: "TUGGER",
+        manufacturer: "KUKA",
         location: "Waypoint 28",
         charge: 15,
         status: "INACTIVE",
@@ -234,6 +262,7 @@ const sampleRobots = [
     {
         serialNumber: "AR029",
         type: "CONVEYOR",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 29",
         charge: 76,
         status: "ACTIVE",
@@ -242,6 +271,7 @@ const sampleRobots = [
     {
         serialNumber: "AR030",
         type: "FORKLIFT",
+        manufacturer: "Fanuc",
         location: "Waypoint 30",
         charge: 33,
         status: "ERROR",
@@ -252,6 +282,7 @@ const sampleRobots = [
     {
         serialNumber: "AR031",
         type: "TUGGER",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 31",
         charge: 69,
         status: "ACTIVE",
@@ -260,6 +291,7 @@ const sampleRobots = [
     {
         serialNumber: "AR032",
         type: "CONVEYOR",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 32",
         charge: 52,
         status: "CHARGING",
@@ -268,6 +300,7 @@ const sampleRobots = [
     {
         serialNumber: "AR033",
         type: "FORKLIFT",
+        manufacturer: "KUKA",
         location: "Waypoint 33",
         charge: 84,
         status: "ACTIVE",
@@ -276,6 +309,7 @@ const sampleRobots = [
     {
         serialNumber: "AR034",
         type: "TUGGER",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 34",
         charge: 19,
         status: "INACTIVE",
@@ -284,6 +318,7 @@ const sampleRobots = [
     {
         serialNumber: "AR035",
         type: "CONVEYOR",
+        manufacturer: "Fanuc",
         location: "Waypoint 35",
         charge: 75,
         status: "ACTIVE",
@@ -292,6 +327,7 @@ const sampleRobots = [
     {
         serialNumber: "AR036",
         type: "FORKLIFT",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 36",
         charge: 42,
         status: "ERROR",
@@ -300,6 +336,7 @@ const sampleRobots = [
     {
         serialNumber: "AR037",
         type: "TUGGER",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 37",
         charge: 87,
         status: "ACTIVE",
@@ -308,6 +345,7 @@ const sampleRobots = [
     {
         serialNumber: "AR038",
         type: "CONVEYOR",
+        manufacturer: "KUKA",
         location: "Waypoint 38",
         charge: 26,
         status: "CHARGING",
@@ -316,6 +354,7 @@ const sampleRobots = [
     {
         serialNumber: "AR039",
         type: "FORKLIFT",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 39",
         charge: 63,
         status: "ACTIVE",
@@ -324,6 +363,7 @@ const sampleRobots = [
     {
         serialNumber: "AR040",
         type: "TUGGER",
+        manufacturer: "Fanuc",
         location: "Waypoint 40",
         charge: 11,
         status: "INACTIVE",
@@ -334,6 +374,7 @@ const sampleRobots = [
     {
         serialNumber: "AR041",
         type: "CONVEYOR",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 41",
         charge: 89,
         status: "ACTIVE",
@@ -342,6 +383,7 @@ const sampleRobots = [
     {
         serialNumber: "AR042",
         type: "FORKLIFT",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 42",
         charge: 37,
         status: "CHARGING",
@@ -350,6 +392,7 @@ const sampleRobots = [
     {
         serialNumber: "AR043",
         type: "TUGGER",
+        manufacturer: "KUKA",
         location: "Waypoint 43",
         charge: 71,
         status: "ACTIVE",
@@ -358,6 +401,7 @@ const sampleRobots = [
     {
         serialNumber: "AR044",
         type: "CONVEYOR",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 44",
         charge: 14,
         status: "ERROR",
@@ -366,6 +410,7 @@ const sampleRobots = [
     {
         serialNumber: "AR045",
         type: "FORKLIFT",
+        manufacturer: "Fanuc",
         location: "Waypoint 45",
         charge: 93,
         status: "ACTIVE",
@@ -374,6 +419,7 @@ const sampleRobots = [
     {
         serialNumber: "AR046",
         type: "TUGGER",
+        manufacturer: "Boston Dynamics",
         location: "Waypoint 46",
         charge: 48,
         status: "CHARGING",
@@ -382,6 +428,7 @@ const sampleRobots = [
     {
         serialNumber: "AR047",
         type: "CONVEYOR",
+        manufacturer: "ABB Robotics",
         location: "Waypoint 47",
         charge: 77,
         status: "ACTIVE",
@@ -390,6 +437,7 @@ const sampleRobots = [
     {
         serialNumber: "AR048",
         type: "FORKLIFT",
+        manufacturer: "KUKA",
         location: "Waypoint 48",
         charge: 24,
         status: "INACTIVE",
@@ -398,6 +446,7 @@ const sampleRobots = [
     {
         serialNumber: "AR049",
         type: "TUGGER",
+        manufacturer: "Amazon Robotics",
         location: "Waypoint 49",
         charge: 86,
         status: "ACTIVE",
@@ -406,6 +455,7 @@ const sampleRobots = [
     {
         serialNumber: "AR050",
         type: "CONVEYOR",
+        manufacturer: "Fanuc",
         location: "Waypoint 50",
         charge: 55,
         status: "ERROR",

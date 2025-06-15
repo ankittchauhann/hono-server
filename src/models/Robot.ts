@@ -3,6 +3,7 @@ import mongoose, { type Document, Schema } from "mongoose";
 export interface IRobot extends Document {
     serialNumber: string;
     type: "TUGGER" | "CONVEYOR" | "FORKLIFT";
+    manufacturer: string;
     location: string;
     charge: number;
     status: "ACTIVE" | "INACTIVE" | "CHARGING" | "ERROR";
@@ -23,6 +24,11 @@ const robotSchema: Schema<IRobot> = new Schema(
             type: String,
             required: true,
             enum: ["TUGGER", "CONVEYOR", "FORKLIFT"],
+        },
+        manufacturer: {
+            type: String,
+            required: true,
+            trim: true,
         },
         location: {
             type: String,
