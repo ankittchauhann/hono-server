@@ -162,15 +162,35 @@ export async function getAllRobots(c: Context) {
     }
 }
 
-// Get all robots without any query limitations
-export async function getAllRobotsUnlimited(c: Context) {
+// Get all robots stats
+export async function getAllRobotsStats(c: Context) {
     try {
         const robots = await Robot.find({}).lean();
 
+        const total = robots.length;
+        const active = robots.filter(
+            (robot) => robot.status === "ACTIVE"
+        ).length;
+        const inactive = robots.filter(
+            (robot) => robot.status === "INACTIVE"
+        ).length;
+        const charging = robots.filter(
+            (robot) => robot.status === "CHARGING"
+        ).length;
+        const error = robots.filter((robot) => robot.status === "ERROR").length;
+
+
+        const response = {
+            total,
+            active,
+            inactive,
+            charging,
+            error,
+        }
+
         return c.json({
             success: true,
-            data: robots,
-            count: robots.length,
+            data: response,
             message: "All robots fetched successfully (no pagination)",
         });
     } catch (error) {

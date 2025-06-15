@@ -4,7 +4,7 @@ import {
     createRobot,
     deleteRobot,
     getAllRobots,
-    getAllRobotsUnlimited,
+    getAllRobotsStats,
     getRobotById,
     getRobotsByType,
     streamRobots,
@@ -19,8 +19,8 @@ robotRoutes.get("/", getAllRobots);
 // GET /robots/stream - Stream robots with filtering/sorting
 robotRoutes.get("/stream", streamRobots);
 
-// GET /robots/all - Get all robots without pagination
-robotRoutes.get("/all", getAllRobotsUnlimited);
+// GET /robots/stats - Get all robots without pagination
+robotRoutes.get("/stats", getAllRobotsStats);
 
 // GET /robots/:id - Get robot by _id
 robotRoutes.get("/:id", getRobotById); // <-- Update route and handler
