@@ -487,3 +487,78 @@ export async function getRobotById(c: Context) {
         );
     }
 }
+
+// GET /robots/stats/stream - Stream robots with filtering/sorting
+export async function streamRobotsStats(c: Context) {
+    console.log('streamRobotsStats function called');
+    return streamSSE(
+        c,
+        async (stream) => {
+            console.log('Stream callback started for stats');
+            // Handle client disconnection
+            stream.onAbort(() => {
+                console.log('Robot stats stream client disconnected');
+            });
+
+            // Continuously send robot stats
+            while (true) {
+                try {
+                    const robots = await Robot.find({}).lean();
+
+                    const total = robots.length;
+                    const active = robots.filter(
+                        (robot) => robot.status === "ACTIVE"
+                    ).length;
+                    const inactive = robots.filter(
+                        (robot) => robot.status === "INACTIVE"
+                    ).length;
+                    const charging = robots.filter(
+                        (robot) => robot.status === "CHARGING"
+                    ).length;
+                    const error = robots.filter((robot) => robot.status === "ERROR").length;
+
+                    await stream.writeSSE({
+                        data: JSON.stringify({
+                            success: true,
+                            data: {
+                                total,
+                                active,
+                                inactive,
+                                charging,
+                                error,
+                            },
+                        }),
+                        event: 'robot:stats',
+                        id: String(streamId++),
+                    });
+                    
+                } catch (error) {
+                    console.error('Error in robot stats stream:', error);
+                    await stream.writeSSE({
+                        data: JSON.stringify({
+                            success: false,
+                            error: error instanceof Error ? error.message : 'Unknown error',
+                            timestamp: new Date().toISOString(),
+                        }),
+                        event: 'robot:error',
+                        id: String(streamId++),
+                    });
+                }
+
+                await stream.sleep(2000); // Send update every 2 seconds
+            }
+        },
+        async (err, stream) => {
+            console.error('Robot stats stream error:', err);
+            await stream.writeSSE({
+                data: JSON.stringify({
+                    success: false,
+                    error: 'Stream error occurred',
+                    timestamp: new Date().toISOString(),
+                }),
+                event: 'error',
+                id: String(streamId++),
+            });
+        }
+    );
+}
