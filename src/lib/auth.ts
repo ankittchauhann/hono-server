@@ -27,7 +27,7 @@ connectMongoDB();
 export const auth = betterAuth({
 	secret:
 		process.env.BETTER_AUTH_SECRET || "demo-secret-key-change-in-production",
-	baseURL: "http://192.168.1.2:5005",
+	baseURL: "http://192.168.1.8:5005",
 	logger: {
 		level: "info",
 	},

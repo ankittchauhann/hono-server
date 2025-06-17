@@ -8,19 +8,23 @@ import {
     getRobotById,
     getRobotsByType,
     streamRobots,
+    streamRobotsStats,
     updateRobot,
 } from "../controllers/RobotController";
 
 const robotRoutes = new Hono();
 
 // GET /robots - Get all robots
-robotRoutes.get("/", getAllRobots);
+robotRoutes.get("/abc", getAllRobots);
 
 // GET /robots/stream - Stream robots with filtering/sorting
-robotRoutes.get("/stream", streamRobots);
+robotRoutes.get("/", streamRobots);
 
 // GET /robots/stats - Get all robots without pagination
 robotRoutes.get("/stats", getAllRobotsStats);
+
+// GET /robots/stats/stream - Stream robots with filtering/sorting
+robotRoutes.get("/stats/stream", streamRobotsStats);
 
 // GET /robots/:id - Get robot by _id
 robotRoutes.get("/:id", getRobotById); // <-- Update route and handler
