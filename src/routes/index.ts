@@ -2,11 +2,15 @@ import { Hono } from "hono";
 import { robotRoutes } from "./robotRoutes";
 import userRoutes from "./userRoutes";
 import { requireAuth } from "../middleware/auth";
+import { robotRequestRoutes } from "./robotRequestRoutes";
 
 const routes = new Hono();
 
 // Mount robot routes
 routes.route("/robots", robotRoutes);
+
+// Mount robot request routes 
+routes.route("/robot-requests",robotRequestRoutes )
 
 // Mount user routes (legacy - consider migrating to better-auth)
 routes.route("/users", userRoutes);

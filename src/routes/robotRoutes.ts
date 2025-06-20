@@ -1,5 +1,4 @@
 import { Hono } from "hono";
-import { streamSSE } from "hono/streaming";
 import {
     createRobot,
     deleteRobot,
@@ -21,10 +20,10 @@ robotRoutes.get("/abc", getAllRobots);
 robotRoutes.get("/", streamRobots);
 
 // GET /robots/stats - Get all robots without pagination
-robotRoutes.get("/stats", getAllRobotsStats);
+// robotRoutes.get("/stats", getAllRobotsStats);
 
 // GET /robots/stats/stream - Stream robots with filtering/sorting
-robotRoutes.get("/stats/stream", streamRobotsStats);
+robotRoutes.get("/stats", streamRobotsStats);
 
 // GET /robots/:id - Get robot by _id
 robotRoutes.get("/:id", getRobotById); // <-- Update route and handler
