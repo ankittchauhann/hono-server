@@ -28,7 +28,7 @@ export async function streamRobotRequestStats(c: Context) {
                         "createdAt",
                     ]);
 
-                    const tempRobotRequestMatrics = {
+                    const tempRobotRequestMetrics = {
                         total: 100,
                         processing: 50,
                         completed: 20,
