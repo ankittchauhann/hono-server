@@ -40,7 +40,7 @@ export async function streamRobotRequestStats(c: Context) {
                     await stream.writeSSE({
                         data: JSON.stringify({
                             success: true,
-                            data: tempRobotRequestMatrics,
+                            data: tempRobotRequestMetrics,
                         }),
                         event: 'robot:data',
                         id: String(streamId++),
