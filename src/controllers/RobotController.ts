@@ -169,15 +169,15 @@ export async function getAllRobotsStats(c: Context) {
 
         const total = robots.length;
         const active = robots.filter(
-            (robot) => robot.status === "ACTIVE"
+            (robot) => robot.status === "active"
         ).length;
         const inactive = robots.filter(
-            (robot) => robot.status === "INACTIVE"
+            (robot) => robot.status === "inactive"
         ).length;
         const charging = robots.filter(
-            (robot) => robot.status === "CHARGING"
+            (robot) => robot.status === "charging"
         ).length;
-        const error = robots.filter((robot) => robot.status === "ERROR").length;
+        const error = robots.filter((robot) => robot.status === "error").length;
 
 
         const response = {
@@ -253,9 +253,11 @@ export async function createRobot(c: Context) {
             type: robotData.type || "TUGGER", // Default to TUGGER if not provided
             location: robotData.location || "Unknown", // Default to Unknown if not provided
             charge: robotData.charge || 100, // Default to 100% if not provided
-            status: robotData.status || "ACTIVE", // Default to ACTIVE if not provided
+            status: robotData.status || "active", // Default to active if not provided
             connectivity: robotData.connectivity || true, // Default to true if not provided
         };
+
+        console.log("Creating robot with data:", tempdata);
 
         const robot = new Robot(tempdata);
         await robot.save();
@@ -507,15 +509,15 @@ export async function streamRobotsStats(c: Context) {
 
                     const total = robots.length;
                     const active = robots.filter(
-                        (robot) => robot.status === "ACTIVE"
+                        (robot) => robot.status === "active"
                     ).length;
                     const inactive = robots.filter(
-                        (robot) => robot.status === "INACTIVE"
+                        (robot) => robot.status === "inactive"
                     ).length;
                     const charging = robots.filter(
-                        (robot) => robot.status === "CHARGING"
+                        (robot) => robot.status === "charging"
                     ).length;
-                    const error = robots.filter((robot) => robot.status === "ERROR").length;
+                    const error = robots.filter((robot) => robot.status === "error").length;
 
                     await stream.writeSSE({
                         data: JSON.stringify({

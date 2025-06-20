@@ -47,7 +47,7 @@ export const validateRobotData = (data: unknown): RobotValidationError[] => {
     }
 
     // Status validation
-    const validStatuses = ["ACTIVE", "INACTIVE", "CHARGING", "ERROR"];
+    const validStatuses = ["active", "inactive", "charging", "error"];
     if (robotData.status && !validStatuses.includes(robotData.status as string)) {
         errors.push({
             field: "status",

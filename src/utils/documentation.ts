@@ -179,7 +179,7 @@ export const apiDocumentation = {
                 type: "TUGGER",
                 location: "Waypoint 9",
                 charge: "95%",
-                status: "ACTIVE",
+                status: "active",
                 connectivity: "CONNECTED",
             },
         },

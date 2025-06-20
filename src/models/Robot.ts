@@ -6,7 +6,7 @@ export interface IRobot extends Document {
     manufacturer: string;
     location: string;
     charge: number;
-    status: "ACTIVE" | "INACTIVE" | "CHARGING" | "ERROR";
+    status: "active" | "inactive" | "charging" | "error";
     connectivity: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -44,7 +44,7 @@ const robotSchema: Schema<IRobot> = new Schema(
         status: {
             type: String,
             required: true,
-            enum: ["ACTIVE", "INACTIVE", "CHARGING", "ERROR"],
+            enum: ["active", "inactive", "charging", "error"],
         },
         connectivity: {
             type: Boolean,
