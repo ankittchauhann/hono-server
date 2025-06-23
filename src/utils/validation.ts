@@ -23,7 +23,7 @@ export const validateRobotData = (data: unknown): RobotValidationError[] => {
         "type",
         "manufacturer",
         "location",
-        "charge",
+        "batteryCharge",
         "status",
         "connectivity",
     ];
@@ -63,13 +63,13 @@ export const validateRobotData = (data: unknown): RobotValidationError[] => {
         });
     }
 
-    // Charge validation (should be a number between 0-100)
-    if (robotData.charge !== undefined) {
-        const charge = Number(robotData.charge);
-        if (Number.isNaN(charge) || charge < 0 || charge > 100) {
+    // Battery charge validation (should be a number between 0-100)
+    if (robotData.batteryCharge !== undefined) {
+        const batteryCharge = Number(robotData.batteryCharge);
+        if (Number.isNaN(batteryCharge) || batteryCharge < 0 || batteryCharge > 100) {
             errors.push({
-                field: "charge",
-                message: 'Charge must be a number between 0 and 100',
+                field: "batteryCharge",
+                message: 'Battery charge must be a number between 0 and 100',
             });
         }
     }

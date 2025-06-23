@@ -5,7 +5,7 @@ export interface IRobot extends Document {
     type: "TUGGER" | "CONVEYOR" | "FORKLIFT";
     manufacturer: string;
     location: string;
-    charge: number;
+    batteryCharge: number;
     status: "active" | "inactive" | "charging" | "error";
     connectivity: boolean;
     createdAt: Date;
@@ -35,11 +35,11 @@ const robotSchema: Schema<IRobot> = new Schema(
             required: true,
             trim: true,
         },
-        charge: {
+        batteryCharge: {
             type: Number,
             required: true,
-            min: [0, "Charge cannot be negative"],
-            max: [100, "Charge cannot exceed 100%"],
+            min: [0, "Battery charge cannot be negative"],
+            max: [100, "Battery charge cannot exceed 100%"],
         },
         status: {
             type: String,

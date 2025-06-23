@@ -29,7 +29,7 @@ export async function streamRobots(c: Context) {
                         "type",
                         "manufacturer",
                         "location",
-                        "charge",
+                        "batteryCharge",
                         "status",
                         "connectivity",
                         "createdAt",
@@ -107,7 +107,7 @@ export async function getAllRobots(c: Context) {
             "type",
             "manufacturer",
             "location",
-            "charge",
+            "batteryCharge",
             "status",
             "connectivity",
             "createdAt",
@@ -252,7 +252,7 @@ export async function createRobot(c: Context) {
             serialNumber: robotData.serialNumber,
             type: robotData.type || "TUGGER", // Default to TUGGER if not provided
             location: robotData.location || "Unknown", // Default to Unknown if not provided
-            charge: robotData.charge || 100, // Default to 100% if not provided
+            batteryCharge: robotData.batteryCharge || 100, // Default to 100% if not provided
             status: robotData.status || "active", // Default to active if not provided
             connectivity: robotData.connectivity || true, // Default to true if not provided
         };
@@ -397,7 +397,7 @@ export async function getRobotsByType(c: Context) {
             "serialNumber",
             "manufacturer",
             "location",
-            "charge",
+            "batteryCharge",
             "status",
             "connectivity",
             "createdAt",

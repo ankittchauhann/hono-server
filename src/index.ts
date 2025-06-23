@@ -22,7 +22,8 @@ const allowedOrigins = [
     "http://localhost:4200", // Angular default
     "http://192.168.1.29:5173",
     "http://192.168.1.27:5173",
-    "http://192.168.1.6:5173"
+    "http://192.168.1.6:5173",
+    "http://192.168.1.19:5173"
 
 ];
 
@@ -59,7 +60,7 @@ app.get("/", (c) => {
 });
 
 // API routes
-app.route("/api", routes);
+app.route("/api/v1", routes);
 
 // 404 handler
 app.notFound((c) => {

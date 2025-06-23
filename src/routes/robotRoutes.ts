@@ -23,7 +23,7 @@ robotRoutes.get("/", streamRobots);
 // robotRoutes.get("/stats", getAllRobotsStats);
 
 // GET /robots/stats/stream - Stream robots with filtering/sorting
-robotRoutes.get("/stats", streamRobotsStats);
+robotRoutes.get("/status", streamRobotsStats);
 
 // GET /robots/:id - Get robot by _id
 robotRoutes.get("/:id", getRobotById); // <-- Update route and handler
