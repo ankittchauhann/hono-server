@@ -32,6 +32,11 @@ export async function streamRobots(c: Context) {
                         "batteryCharge",
                         "status",
                         "connectivity",
+                        "emergencyStop",
+                        "softwareStatus",
+                        "hardwareStatus",
+                        "batteryStatus",
+                        "networkStatus",
                         "createdAt",
                         "updatedAt",
                     ]);
@@ -110,6 +115,11 @@ export async function getAllRobots(c: Context) {
             "batteryCharge",
             "status",
             "connectivity",
+            "emergencyStop",
+            "softwareStatus",
+            "hardwareStatus",
+            "batteryStatus",
+            "networkStatus",
             "createdAt",
             "updatedAt",
         ]);
@@ -255,6 +265,11 @@ export async function createRobot(c: Context) {
             batteryCharge: robotData.batteryCharge || 100, // Default to 100% if not provided
             status: robotData.status || "active", // Default to active if not provided
             connectivity: robotData.connectivity || true, // Default to true if not provided
+            emergencyStop: robotData.emergencyStop || false, // Default to false if not provided
+            softwareStatus: robotData.softwareStatus || 0, // Default to 0 if not provided
+            hardwareStatus: robotData.hardwareStatus || 0, // Default to 0 if not provided
+            batteryStatus: robotData.batteryStatus || 0, // Default to 0 if not provided
+            networkStatus: robotData.networkStatus || 0, // Default to 0 if not provided
         };
 
         console.log("Creating robot with data:", tempdata);
@@ -400,6 +415,11 @@ export async function getRobotsByType(c: Context) {
             "batteryCharge",
             "status",
             "connectivity",
+            "emergencyStop",
+            "softwareStatus",
+            "hardwareStatus",
+            "batteryStatus",
+            "networkStatus",
             "createdAt",
             "updatedAt",
         ]);

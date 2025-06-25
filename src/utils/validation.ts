@@ -26,6 +26,11 @@ export const validateRobotData = (data: unknown): RobotValidationError[] => {
         "batteryCharge",
         "status",
         "connectivity",
+        "emergencyStop",
+        "softwareStatus",
+        "hardwareStatus",
+        "batteryStatus",
+        "networkStatus",
     ];
 
     for (const field of requiredFields) {
@@ -89,6 +94,27 @@ export const validateRobotData = (data: unknown): RobotValidationError[] => {
             errors.push({
                 field: "manufacturer",
                 message: 'Manufacturer name must be at least 2 characters long',
+            });
+        }
+    }
+
+    // Emergency stop validation
+    if (robotData.emergencyStop !== undefined && typeof robotData.emergencyStop !== "boolean") {
+        errors.push({
+            field: "emergencyStop",
+            message: "Emergency stop must be a boolean value (true or false)",
+        });
+    }
+
+    // Status fields validation (should be 0, 1, 2, or 3)
+    const statusFields = ["softwareStatus", "hardwareStatus", "batteryStatus", "networkStatus"];
+    const validStatusValues = [0, 1, 2, 3];
+    
+    for (const field of statusFields) {
+        if (robotData[field] !== undefined && !validStatusValues.includes(Number(robotData[field]))) {
+            errors.push({
+                field,
+                message: `${field} must be one of: ${validStatusValues.join(", ")}`,
             });
         }
     }
