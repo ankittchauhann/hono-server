@@ -121,7 +121,7 @@ export const validateRobotData = (data: unknown): RobotValidationError[] => {
     }
 
     // Usage level validation
-    const validUsageLevels = ["ACKNOWLEDGED", "POSITION_ACKNOWLEDGED", "IGNORED"];
+    const validUsageLevels = ["acknowledged", "position_acknowledged", "ignored"];
     if (robotData.usageLevel && !validUsageLevels.includes(robotData.usageLevel as string)) {
         errors.push({
             field: "usageLevel",

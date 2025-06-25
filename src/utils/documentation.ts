@@ -75,7 +75,7 @@ export const apiDocumentation = {
                     hardwareStatus: "number (required, enum: 0|1|2|3)",
                     batteryStatus: "number (required, enum: 0|1|2|3)",
                     networkStatus: "number (required, enum: 0|1|2|3)",
-                    usageLevel: "string (required, enum: ACKNOWLEDGED|POSITION_ACKNOWLEDGED|IGNORED)",
+                    usageLevel: "string (required, enum: acknowledged|position_acknowledged|ignored)",
                 },
                 response: {
                     success: true,
@@ -101,7 +101,7 @@ export const apiDocumentation = {
                     id: "Robot ID (MongoDB ObjectId)",
                 },
                 body: {
-                    usageLevel: "string (required, enum: ACKNOWLEDGED|POSITION_ACKNOWLEDGED|IGNORED)",
+                    usageLevel: "string (required, enum: acknowledged|position_acknowledged|ignored)",
                 },
                 response: {
                     success: true,
@@ -206,7 +206,7 @@ export const apiDocumentation = {
                 hardwareStatus: 0,
                 batteryStatus: 1,
                 networkStatus: 0,
-                usageLevel: "ACKNOWLEDGED",
+                usageLevel: "acknowledged",
             },
         },
         updateRobot: {
@@ -221,7 +221,7 @@ export const apiDocumentation = {
             method: "PATCH",
             url: "/api/robots/60f7b1b0e4b0a2001f5e4a2b/usage-level",
             body: {
-                usageLevel: "POSITION_ACKNOWLEDGED",
+                usageLevel: "position_acknowledged",
             },
         },
     },

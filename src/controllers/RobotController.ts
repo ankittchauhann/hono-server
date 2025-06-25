@@ -272,7 +272,7 @@ export async function createRobot(c: Context) {
             hardwareStatus: robotData.hardwareStatus || 0, // Default to 0 if not provided
             batteryStatus: robotData.batteryStatus || 0, // Default to 0 if not provided
             networkStatus: robotData.networkStatus || 0, // Default to 0 if not provided
-            usageLevel: robotData.usageLevel || "ACKNOWLEDGED", // Default to ACKNOWLEDGED if not provided
+            usageLevel: robotData.usageLevel || "acknowledged", // Default to acknowledged if not provided
         };
 
         console.log("Creating robot with data:", tempdata);
@@ -597,7 +597,7 @@ export async function updateRobotUsageLevel(c: Context) {
         const { usageLevel } = await c.req.json();
 
         // Validate usageLevel
-        const validUsageLevels = ["ACKNOWLEDGED", "POSITION_ACKNOWLEDGED", "IGNORED"];
+        const validUsageLevels = ["acknowledged", "position_acknowledged", "ignored"];
         if (!usageLevel || !validUsageLevels.includes(usageLevel)) {
             return c.json(
                 {

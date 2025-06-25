@@ -16,7 +16,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "POSITION_ACKNOWLEDGED",
+        usageLevel: "position_acknowledged",
     },
     {
         serialNumber: "AR002",
@@ -31,7 +31,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 2,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR003",
@@ -46,7 +46,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "IGNORED",
+        usageLevel: "ignored",
     },
     {
         serialNumber: "AR004",
@@ -61,7 +61,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "POSITION_ACKNOWLEDGED",
+        usageLevel: "position_acknowledged",
     },
     {
         serialNumber: "AR005",
@@ -76,7 +76,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR006",
@@ -91,7 +91,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR007",
@@ -106,7 +106,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR008",
@@ -121,7 +121,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR009",
@@ -136,7 +136,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR010",
@@ -151,7 +151,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
 
     // Robots 11-20
@@ -168,7 +168,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR012",
@@ -183,7 +183,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR013",
@@ -198,7 +198,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR014",
@@ -213,7 +213,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR015",
@@ -228,7 +228,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR016",
@@ -243,7 +243,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR017",
@@ -258,7 +258,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR018",
@@ -273,7 +273,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR019",
@@ -288,7 +288,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR020",
@@ -303,7 +303,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
 
     // Robots 21-30
@@ -320,7 +320,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR022",
@@ -335,7 +335,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR023",
@@ -350,7 +350,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR024",
@@ -365,7 +365,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
         },
     {
         serialNumber: "AR025",
@@ -380,7 +380,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR026",
@@ -395,7 +395,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR027",
@@ -410,7 +410,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR028",
@@ -425,7 +425,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR029",
@@ -440,7 +440,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR030",
@@ -455,7 +455,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
 
     // Robots 31-40
@@ -472,7 +472,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR032",
@@ -487,7 +487,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR033",
@@ -502,7 +502,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR034",
@@ -517,7 +517,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR035",
@@ -532,7 +532,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR036",
@@ -547,7 +547,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR037",
@@ -562,7 +562,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR038",
@@ -577,7 +577,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR039",
@@ -592,7 +592,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR040",
@@ -607,7 +607,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
 
     // Robots 41-50
@@ -624,7 +624,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR042",
@@ -639,7 +639,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR043",
@@ -654,7 +654,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR044",
@@ -669,7 +669,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR045",
@@ -684,7 +684,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR046",
@@ -699,7 +699,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR047",
@@ -714,7 +714,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR048",
@@ -729,7 +729,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR049",
@@ -744,7 +744,7 @@ const sampleRobots = [
         hardwareStatus: 0,
         batteryStatus: 1,
         networkStatus: 0,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
     {
         serialNumber: "AR050",
@@ -759,7 +759,7 @@ const sampleRobots = [
         hardwareStatus: 1,
         batteryStatus: 2,
         networkStatus: 2,
-        usageLevel: "ACKNOWLEDGED",
+        usageLevel: "acknowledged",
     },
 ];
 

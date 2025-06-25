@@ -13,7 +13,7 @@ export interface IRobot extends Document {
     hardwareStatus: 0 | 1 | 2 | 3;
     batteryStatus: 0 | 1 | 2 | 3;
     networkStatus: 0 | 1 | 2 | 3;
-    usageLevel: "ACKNOWLEDGED" | "POSITION_ACKNOWLEDGED" | "IGNORED";
+    usageLevel: "acknowledged" | "position_acknowledged" | "ignored";
     createdAt: Date;
     updatedAt: Date;
 }
@@ -87,8 +87,8 @@ const robotSchema: Schema<IRobot> = new Schema(
         },
         usageLevel: {
             type: String,
-            enum: ["ACKNOWLEDGED", "POSITION_ACKNOWLEDGED", "IGNORED"],
-            default: "ACKNOWLEDGED",
+            enum: ['acknowledged', 'position_acknowledged', 'ignored'],
+            default: 'acknowledged',
         },
     },
     {
