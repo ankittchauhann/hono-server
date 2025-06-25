@@ -75,6 +75,7 @@ export const apiDocumentation = {
                     hardwareStatus: "number (required, enum: 0|1|2|3)",
                     batteryStatus: "number (required, enum: 0|1|2|3)",
                     networkStatus: "number (required, enum: 0|1|2|3)",
+                    usageLevel: "string (required, enum: ACKNOWLEDGED|POSITION_ACKNOWLEDGED|IGNORED)",
                 },
                 response: {
                     success: true,
@@ -191,6 +192,7 @@ export const apiDocumentation = {
                 hardwareStatus: 0,
                 batteryStatus: 1,
                 networkStatus: 0,
+                usageLevel: "ACKNOWLEDGED",
             },
         },
         updateRobot: {

@@ -31,6 +31,7 @@ export const validateRobotData = (data: unknown): RobotValidationError[] => {
         "hardwareStatus",
         "batteryStatus",
         "networkStatus",
+        "usageLevel",
     ];
 
     for (const field of requiredFields) {
@@ -117,6 +118,15 @@ export const validateRobotData = (data: unknown): RobotValidationError[] => {
                 message: `${field} must be one of: ${validStatusValues.join(", ")}`,
             });
         }
+    }
+
+    // Usage level validation
+    const validUsageLevels = ["ACKNOWLEDGED", "POSITION_ACKNOWLEDGED", "IGNORED"];
+    if (robotData.usageLevel && !validUsageLevels.includes(robotData.usageLevel as string)) {
+        errors.push({
+            field: "usageLevel",
+            message: `Usage level must be one of: ${validUsageLevels.join(", ")}`,
+        });
     }
 
     return errors;

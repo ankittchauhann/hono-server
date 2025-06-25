@@ -37,6 +37,7 @@ export async function streamRobots(c: Context) {
                         "hardwareStatus",
                         "batteryStatus",
                         "networkStatus",
+                        "usageLevel",
                         "createdAt",
                         "updatedAt",
                     ]);
@@ -120,6 +121,7 @@ export async function getAllRobots(c: Context) {
             "hardwareStatus",
             "batteryStatus",
             "networkStatus",
+            "usageLevel",
             "createdAt",
             "updatedAt",
         ]);
@@ -270,6 +272,7 @@ export async function createRobot(c: Context) {
             hardwareStatus: robotData.hardwareStatus || 0, // Default to 0 if not provided
             batteryStatus: robotData.batteryStatus || 0, // Default to 0 if not provided
             networkStatus: robotData.networkStatus || 0, // Default to 0 if not provided
+            usageLevel: robotData.usageLevel || "ACKNOWLEDGED", // Default to ACKNOWLEDGED if not provided
         };
 
         console.log("Creating robot with data:", tempdata);
@@ -421,6 +424,7 @@ export async function getRobotsByType(c: Context) {
             "hardwareStatus",
             "batteryStatus",
             "networkStatus",
+            "usageLevel",
             "createdAt",
             "updatedAt",
         ]);
