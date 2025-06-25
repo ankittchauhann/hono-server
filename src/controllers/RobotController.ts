@@ -589,3 +589,66 @@ export async function streamRobotsStats(c: Context) {
         }
     );
 }
+
+// Update robot usage level by ID
+export async function updateRobotUsageLevel(c: Context) {
+    try {
+        const id = c.req.param("id");
+        const { usageLevel } = await c.req.json();
+
+        // Validate usageLevel
+        const validUsageLevels = ["ACKNOWLEDGED", "POSITION_ACKNOWLEDGED", "IGNORED"];
+        if (!usageLevel || !validUsageLevels.includes(usageLevel)) {
+            return c.json(
+                {
+                    success: false,
+                    error: `Invalid usage level. Must be one of: ${validUsageLevels.join(", ")}`,
+                },
+                400
+            );
+        }
+
+        // Find and update the robot
+        const robot = await Robot.findByIdAndUpdate(
+            id,
+            { usageLevel },
+            { new: true, runValidators: true }
+        );
+
+        if (!robot) {
+            return c.json(
+                {
+                    success: false,
+                    error: "Robot not found",
+                },
+                404
+            );
+        }
+
+        return c.json({
+            success: true,
+            data: robot,
+            message: "Robot usage level updated successfully",
+        });
+    } catch (error) {
+        console.error("Error in updateRobotUsageLevel:", error);
+
+        if (error instanceof Error && error.name === "CastError") {
+            return c.json(
+                {
+                    success: false,
+                    error: "Invalid robot ID format",
+                },
+                400
+            );
+        }
+
+        return c.json(
+            {
+                success: false,
+                error: "Internal server error",
+            },
+            500
+        );
+    }
+}

@@ -95,6 +95,20 @@ export const apiDocumentation = {
                     message: "Robot updated successfully",
                 },
             },
+            "PATCH /robots/:id/usage-level": {
+                description: "Update robot usage level by ID",
+                parameters: {
+                    id: "Robot ID (MongoDB ObjectId)",
+                },
+                body: {
+                    usageLevel: "string (required, enum: ACKNOWLEDGED|POSITION_ACKNOWLEDGED|IGNORED)",
+                },
+                response: {
+                    success: true,
+                    data: "Updated robot object",
+                    message: "Robot usage level updated successfully",
+                },
+            },
             "DELETE /robots/:serialNumber": {
                 description: "Delete robot by serial number",
                 parameters: {
@@ -201,6 +215,13 @@ export const apiDocumentation = {
             body: {
                 charge: "75%",
                 location: "Waypoint 10",
+            },
+        },
+        updateRobotUsageLevel: {
+            method: "PATCH",
+            url: "/api/robots/60f7b1b0e4b0a2001f5e4a2b/usage-level",
+            body: {
+                usageLevel: "POSITION_ACKNOWLEDGED",
             },
         },
     },

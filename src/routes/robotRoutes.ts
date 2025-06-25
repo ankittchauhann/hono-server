@@ -9,6 +9,7 @@ import {
     streamRobots,
     streamRobotsStats,
     updateRobot,
+    updateRobotUsageLevel,
 } from "../controllers/RobotController";
 
 const robotRoutes = new Hono();
@@ -33,6 +34,9 @@ robotRoutes.post("/", createRobot);
 
 // PUT /robots/:id - Update robot by _id
 robotRoutes.put("/:id", updateRobot); // <-- Update route
+
+// PATCH /robots/update-usage-level/:id - Update robot usage level by _id
+robotRoutes.patch("/update-usage-level/:id", updateRobotUsageLevel);
 
 // DELETE /robots/:id - Delete robot by _id
 robotRoutes.delete("/:id", deleteRobot); // <-- Update route
