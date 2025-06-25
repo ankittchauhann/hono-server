@@ -384,6 +384,7 @@ export async function deleteRobot(c: Context) {
         return c.json({
             success: true,
             message: "Robot deleted successfully",
+            data: robot,
         });
     } catch (error) {
         console.error("Error in deleteRobot:", error);
