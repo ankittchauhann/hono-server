@@ -35,6 +35,8 @@ export const auth = betterAuth({
 	emailAndPassword: {
 		enabled: true,
 		// requireEmailVerification: false,
+		minPasswordLength: 6, // Allow passwords as short as 6 characters
+		maxPasswordLength: 128,
 	},
 	session: {
 		expiresIn: 60 * 60 * 24 * 7, // 7 days
@@ -68,8 +70,9 @@ export const auth = betterAuth({
 		// "http://192.168.1.27:5173",
 		"http://192.168.1.6:5173",
 		"http://192.168.1.19:5173",
-		"http://192.168.1.23:5173"
-
+		"http://192.168.1.23:5173",
+		"http://192.168.1.93:5173",
+		"http://192.168.1.17:5173"
 
 	],
 });
